@@ -2,6 +2,8 @@
 ![Status](https://img.shields.io/badge/status-stable-success)
 ![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-green)
 ![GitHub Release](https://img.shields.io/github/v/release/2Montmirail/plus33-extension)
+[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Install-blue)](https://chromewebstore.google.com/detail/%2B-33/cjkgpjlbkilpockfcadeadljpeclfolg)
+
 
 # +33# Chrome Extension
 
@@ -22,6 +24,13 @@ Paste one or multiple numbers → choose a format → results are automatically 
 - Multiple output styles
 - Multi-line input supported
 - Invalid lines reported inline
+
+## Install from Chrome Web Store
+
+You can install the extension directly here:
+
+https://chromewebstore.google.com/detail/%2B-33/cjkgpjlbkilpockfcadeadljpeclfolg
+
 
 ## Installation (Developer Mode)
 
