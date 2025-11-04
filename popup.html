@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>+33#</title>
+  <style>
+    :root {
+      --bg-color: #f5f5f5;
+      --text-color: #333333;
+      --text-color-secondary: #888888;
+      --btn-bg: #007bff;
+      --btn-text: #ffffff;
+      --error-color: #e74c3c;
+      --spacing: 15px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #2c2c2c;
+        --text-color: #f5f5f5;
+        --text-color-secondary: #bbbbbb;
+        --btn-bg: #1a73e8;
+        --btn-text: #ffffff;
+      }
+    }
+
+    body {
+      position: relative;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      margin: 0;
+      padding: var(--spacing);
+      width: 360px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      margin: 0 0 var(--spacing);
+      font-size: 24px;
+      text-align: center;
+    }
+
+    #input,
+    select,
+    button#format,
+    #output {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: var(--spacing);
+    }
+
+    #input,
+    #output {
+      height: 60px;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: none;
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    select {
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button#format {
+      background-color: var(--btn-bg);
+      color: var(--btn-text);
+      border: none;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-transform: uppercase;
+    }
+    button#format:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    button#format:active {
+      transform: scale(0.95);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .error-item {
+      color: var(--error-color);
+      font-size: 14px;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+    .error-item::before {
+      content: "⚠️";
+      margin-right: 6px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to   { opacity: 1; transform: translateY(0);      }
+    }
+
+    #errors {
+      min-height: 20px;
+    }
+
+    #version {
+      position: absolute;
+      bottom: var(--spacing);
+      right: var(--spacing);
+      font-size: 12px;
+      color: var(--text-color-secondary);
+    }
+  </style>
+</head>
+<body>
+  <h1>+33#</h1>
+
+  <textarea id="input" placeholder="Collez les numéros à formater…"></textarea>
+
+  <select id="format-select">
+    <option value="international">International (+33XXXXXXXXX)</option>
+    <option value="national-space">National (espaces) 0X XX XX XX XX</option>
+    <option value="national-point">National (points) 0X.XX.XX.XX.XX</option>
+    <option value="national-none">National (sans séparateurs) 0XXXXXXXXX</option>
+    <option value="national-dash">National (tirets) 0X-XX-XX-XX-XX</option>
+  </select>
+
+  <button id="format">Formater &amp; Copier 🚀</button>
+
+  <div id="errors"></div>
+
+  <textarea id="output" readonly placeholder="+33123456789"></textarea>
+
+  <div id="version">
+    <a href="https://www.linkedin.com/in/gauthierhuguenin/" target="_blank" rel="noopener noreferrer">
+      v1.1 by 🐐
+    </a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
