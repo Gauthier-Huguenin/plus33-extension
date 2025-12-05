@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented here.
 
+## v1.2 — Design Overhaul & Branding
+- Complete UI redesign (Clean White theme inspired by hgnn.io)
+- Added visual feedback on copy action (Green checkmark)
+- Improved error handling display
+- Updated manifest metadata
+- Added author branding and website link
+
 ## v1.1 — First open-source release
 - Project made public
 - Added The Unlicense license
