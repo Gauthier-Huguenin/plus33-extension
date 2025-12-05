@@ -1,3 +1,5 @@
+// popup.js - Version 1.2
+
 function getNationalNumber(raw) {
   const cleaned = raw.replace(/\D+/g, '');
   let national = null;
@@ -10,8 +12,6 @@ function getNationalNumber(raw) {
     national = cleaned.slice(1);
   } else if (cleaned.length === 9) {
     national = cleaned;
-  } else {
-    return null;
   }
   return national;
 }
@@ -19,52 +19,74 @@ function getNationalNumber(raw) {
 function formatOutput(national, formatType) {
   const fullLocal = '0' + national;
   switch (formatType) {
-    case 'international':
-      return '+33' + national;
-    case 'national-space':
-      return fullLocal.replace(/(\d{2})(?=\d)/g, '$1 ');
-    case 'national-point':
-      return fullLocal.replace(/(\d{2})(?=\d)/g, '$1.');
-    case 'national-none':
-      return fullLocal;
-    case 'national-dash':
-      return fullLocal.replace(/(\d{2})(?=\d)/g, '$1-');
-    default:
-      return fullLocal;
+    case 'international': return '+33' + national;
+    case 'national-space': return fullLocal.replace(/(\d{2})(?=\d)/g, '$1 ');
+    case 'national-point': return fullLocal.replace(/(\d{2})(?=\d)/g, '$1.');
+    case 'national-dash': return fullLocal.replace(/(\d{2})(?=\d)/g, '$1-');
+    case 'national-none': default: return fullLocal;
   }
 }
 
+// C'est ici que le clic est détecté
 document.getElementById('format').addEventListener('click', () => {
-  const inputEl   = document.getElementById('input');
-  const fmt       = document.getElementById('format-select').value;
+  const inputEl = document.getElementById('input');
+  const formatSelect = document.getElementById('format-select'); // Vérifie bien cet ID
   const errorsDiv = document.getElementById('errors');
-  errorsDiv.innerHTML = '';
+  const outputEl = document.getElementById('output');
+  const btn = document.getElementById('format');
 
-  const rawLines = inputEl.value.trim() === '' ? [] : inputEl.value.trim().split(/\r?\n/);
-  const results  = [];
+  // Si un élément manque, on arrête tout (sécurité pour le débug)
+  if (!inputEl || !formatSelect || !errorsDiv || !outputEl || !btn) {
+    console.error("Erreur : Un élément HTML est introuvable par le Javascript.");
+    return;
+  }
+
+  const fmt = formatSelect.value;
+  errorsDiv.innerHTML = ''; // Reset erreurs
+  
+  const rawLines = inputEl.value.trim().split(/\r?\n/);
+  const results = [];
+  let hasContent = false;
 
   rawLines.forEach(line => {
     const trimmed = line.trim();
+    if (!trimmed) return;
+    hasContent = true;
+
     const nat = getNationalNumber(trimmed);
     if (nat) {
       results.push(formatOutput(nat, fmt));
-    } else if (trimmed) {
+    } else {
       const div = document.createElement('div');
       div.className = 'error-item';
-      div.textContent = `Numéro invalide : "${trimmed}"`;
+      div.innerText = `Numéro invalide : ${trimmed}`;
       errorsDiv.appendChild(div);
     }
   });
 
-  const outputEl = document.getElementById('output');
-  outputEl.value = results.join('\n');
+  // Affichage
+  const finalOutput = results.join('\n');
+  outputEl.value = finalOutput;
+
+  // Copie et Animation du bouton
   if (results.length > 0) {
-    navigator.clipboard.writeText(results.join('\n'))
-      .catch(err => {
-        const div = document.createElement('div');
-        div.className = 'error-item';
-        div.textContent = `Erreur de copie : ${err}`;
-        errorsDiv.appendChild(div);
-      });
+    navigator.clipboard.writeText(finalOutput).then(() => {
+      const originalText = btn.innerHTML; // On garde le texte original (avec l'emoji)
+      btn.innerHTML = "Copié ! ✅";
+      btn.style.backgroundColor = "#10b981"; // Vert succès
+      btn.style.color = "white";
+      
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.backgroundColor = ""; // Retour couleur CSS
+        btn.style.color = ""; 
+      }, 2000);
+    });
+  } else if (!hasContent) {
+    // Si l'utilisateur n'a rien mis
+    const div = document.createElement('div');
+    div.className = 'error-item';
+    div.innerText = "Veuillez coller un numéro.";
+    errorsDiv.appendChild(div);
   }
 });
