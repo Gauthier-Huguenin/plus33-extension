@@ -1,10 +1,9 @@
 {
-"update_url": "https://clients2.google.com/service/update2/crx",
-
+  "update_url": "https://clients2.google.com/service/update2/crx",
   "manifest_version": 3,
   "name": "+ 33 #",
-  "version": "1.1",
-  "description": "Chrome Extension +33# : formatez et copiez instantanément vos numéros français en formats international (+33XXXXXXXXX) et national.",
+  "version": "1.2",
+  "description": "Chrome Extension +33# : formatez et copiez instantanément vos numéros français. Design by HGNN.io",
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
