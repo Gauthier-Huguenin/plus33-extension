@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique de Confidentialité | +33# Extension</title>
+    <meta name="robots" content="noindex">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased p-6 md:p-12">
+
+    <main class="max-w-2xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-200">
+        
+        <div class="mb-10 pb-6 border-b border-slate-100">
+            <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Politique de Confidentialité</h1>
+            <p class="text-slate-500">Extension Chrome : <span class="font-bold text-purple-600">+ 33 #</span></p>
+        </div>
+
+        <div class="space-y-8 text-slate-700 leading-relaxed">
+            
+            <section>
+                <h2 class="text-lg font-bold text-slate-900 mb-3">1. Collecte de données</h2>
+                <p>
+                    L'extension <strong>+33#</strong> ne collecte, ne stocke et ne transmet <strong>aucune donnée personnelle</strong>. 
+                </p>
+                <p class="mt-2">
+                    Le traitement des numéros de téléphone s'effectue <strong>localement</strong> sur votre appareil (Client-side) via JavaScript. Aucun numéro formaté n'est envoyé vers un serveur externe ou un tiers.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-lg font-bold text-slate-900 mb-3">2. Permissions demandées</h2>
+                <p>L'extension requiert uniquement la permission suivante :</p>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                    <li>
+                        <code class="bg-slate-100 px-1 py-0.5 rounded text-sm font-mono">clipboardWrite</code> : Utilisée uniquement pour copier automatiquement le numéro formaté dans votre presse-papier lorsque vous cliquez sur le bouton.
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-lg font-bold text-slate-900 mb-3">3. Contact</h2>
+                <p>
+                    Pour toute question concernant cette extension, vous pouvez contacter le développeur :
+                </p>
+                <a href="mailto:gauthier@hgnn.io" class="inline-block mt-2 text-purple-600 hover:underline font-medium">gauthier@hgnn.io</a>
+            </section>
+
+        </div>
+
+        <div class="mt-12 pt-6 border-t border-slate-100 text-center text-xs text-slate-400">
+            &copy; <span id="year"></span> Gauthier Huguenin. Open Source Project.
+        </div>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+        document.getElementById('year').innerText = new Date().getFullYear();
+    </script>
+</body>
+</html>
